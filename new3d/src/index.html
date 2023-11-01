@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    @keyframes rotate {
+
+    }
+  </style>
+</head>
+<body>
+<div style="display: flex">
+  <canvas style="width:50%!important;" id="threeDCanvas" width="600" height="600"></canvas>
+</div>
+<div>
+  <button onclick="updateMap()">解锁焦点</button>
+  <input type="number" placeholder="高光" v-model="heightLight">
+  <input type="number" placeholder="环境" v-model="ambientLight">
+  <input type="number" placeholder="辅助" v-model="aroundPoints">
+  <br>
+  <input type="number" placeholder="粗糙" v-model="roughness">
+  <input type="number" placeholder="金属" v-model="metalness">
+  <br>
+  <input type="number" placeholder="厚度" v-model="normalScale">
+  <input type="number" placeholder="密度" onchange="normalRepeat(this)">
+  <button onclick="updateNormalMap()">更新法线</button>
+  <button onclick="updateMesh()">更新模型</button>
+</div>
+
+</body>
+<script>
+  const {Zw_previewer, json3DTransform, loadDecoder} = zw_3d
+  loadDecoder('/draco/')
+  const json = {
+    "materials": [
+      {
+        "pbrMetallicRoughness": {
+          "metallicFactor": 0.0,
+          "roughnessFactor": 0.79999999701976776
+        },
+        "normalTexture": {
+          "index": 0
+        },
+        "name": "HouseholdItems_MT002_13_A_scale13&13_custom"
+      },
+      {
+        "pbrMetallicRoughness": {
+          "metallicFactor": 0.0,
+          "roughnessFactor": 0.79999999701976776
+        },
+        "normalTexture": {
+          "index": 0
+        },
+        "name": "HouseholdItems_MT002_13_B_scale13&13"
+      },
+      {
+        "pbrMetallicRoughness": {
+          "baseColorTexture": {
+            "index": 1,
+            "extensions": {
+              "KHR_texture_transform": {
+                "scale": [
+                  151.0,
+                  151.0
+                ]
+              }
+            }
+          },
+          "metallicFactor": 0.0,
+          "roughnessFactor": 0.79999999701976776
+        },
+        "alphaMode": "BLEND",
+        "name": "HouseholdItems_MT002_13_C_scale151&151"
+      },
+      {
+        "pbrMetallicRoughness": {
+          "baseColorTexture": {
+            "index": 2,
+            "extensions": {
+              "KHR_texture_transform": {
+                "scale": [
+                  151.0,
+                  151.0
+                ]
+              }
+            }
+          },
+          "metallicFactor": 0.0,
+          "roughnessFactor": 0.79999999701976776
+        },
+        "alphaMode": "BLEND",
+        "name": "HouseholdItems_MT002_13_D_scale151&151"
+      }
+    ],
+    "images": [
+      {
+        "uri": "/HouseholdItems_MT002_05/HouseholdItems_MT002_01_A_N.png",
+        "name": "HouseholdItems_MT002_01_A_N"
+      },
+      {
+        "uri": "/HouseholdItems_MT002_05/HouseholdItems_MT002_01_C.png",
+        "name": "HouseholdItems_MT002_01_C"
+      },
+      {
+        "uri": "/HouseholdItems_MT002_05/HouseholdItems_MT002_01_D.png",
+        "name": "HouseholdItems_MT002_01_D"
+      }
+    ],
+  }
+
+  const matsInfo = json3DTransform(json)
+  let previewer
+  async function init3dPreviewer() {
+    previewer = new Zw_previewer({
+      el: document.querySelector('canvas'),
+      width: 600,
+      height: 600,
+      enableControl: true,
+      GLTFPath: '/Clothing_10076_04/Clothing_10076_04.gltf',
+      lightLock: false,
+      matsInfo: {},
+      // matsInfo,
+      rotation: {x: 0.5, y: 0, z: .5},
+      transparentBackground: true,
+      mainPointLight: {
+        intensity: 0.5,
+        "position": {
+          "x": 300,
+          "y": 300,
+          "z": 30
+        },
+      },
+      zoom: 3,
+      ambientLight: {
+        intensity: 0.1
+      },
+      aroundPointLight: {
+        intensity: 0.1
+      },
+      cameraPosition: {
+        x: -4,
+        y: 8,
+        z: -4
+      }
+    })
+    await previewer.init()
+    previewer.updateMap('/Studio-light.png', 'Clothing_1000C_A_custom')
+    previewer.getImg()
+  }
+  init3dPreviewer()
+</script>
+</html>

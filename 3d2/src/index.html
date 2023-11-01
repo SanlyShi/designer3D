@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    @keyframes rotate {
+
+    }
+  </style>
+</head>
+<body>
+<div style="display: flex">
+  <canvas style="width:50%!important;" id="threeDCanvas" width="600" height="600"></canvas>
+</div>
+<div>
+  <button onclick="updateMap()">解锁焦点</button>
+  <input type="number" placeholder="高光" v-model="heightLight">
+  <input type="number" placeholder="环境" v-model="ambientLight">
+  <input type="number" placeholder="辅助" v-model="aroundPoints">
+  <br>
+  <input type="number" placeholder="粗糙" v-model="roughness">
+  <input type="number" placeholder="金属" v-model="metalness">
+  <br>
+  <input type="number" placeholder="厚度" v-model="normalScale">
+  <input type="number" placeholder="密度" onchange="normalRepeat(this)">
+  <button onclick="updateNormalMap()">更新法线</button>
+  <button onclick="updateMesh()">更新模型</button>
+</div>
+
+</body>
+<script>
+  const json = {
+    "materials": [
+      {
+        "pbrMetallicRoughness": {
+          "metallicFactor": 0.0,
+          "roughnessFactor": 0.79999999701976776
+        },
+        "normalTexture": {
+          "index": 0
+        },
+        "name": "HouseholdItems_MT002_13_A_scale13&13_custom"
+      },
+      {
+        "pbrMetallicRoughness": {
+          "metallicFactor": 0.0,
+          "roughnessFactor": 0.79999999701976776
+        },
+        "normalTexture": {
+          "index": 0
+        },
+        "name": "HouseholdItems_MT002_13_B_scale13&13"
+      },
+      {
+        "pbrMetallicRoughness": {
+          "baseColorTexture": {
+            "index": 1,
+            "extensions": {
+              "KHR_texture_transform": {
+                "scale": [
+                  151.0,
+                  151.0
+                ]
+              }
+            }
+          },
+          "metallicFactor": 0.0,
+          "roughnessFactor": 0.79999999701976776
+        },
+        "alphaMode": "BLEND",
+        "name": "HouseholdItems_MT002_13_C_scale151&151"
+      },
+      {
+        "pbrMetallicRoughness": {
+          "baseColorTexture": {
+            "index": 2,
+            "extensions": {
+              "KHR_texture_transform": {
+                "scale": [
+                  151.0,
+                  151.0
+                ]
+              }
+            }
+          },
+          "metallicFactor": 0.0,
+          "roughnessFactor": 0.79999999701976776
+        },
+        "alphaMode": "BLEND",
+        "name": "HouseholdItems_MT002_13_D_scale151&151"
+      }
+    ],
+    "images": [
+      {
+        "uri": "/HouseholdItems_MT002_05/HouseholdItems_MT002_01_A_N.png",
+        "name": "HouseholdItems_MT002_01_A_N"
+      },
+      {
+        "uri": "/HouseholdItems_MT002_05/HouseholdItems_MT002_01_C.png",
+        "name": "HouseholdItems_MT002_01_C"
+      },
+      {
+        "uri": "/HouseholdItems_MT002_05/HouseholdItems_MT002_01_D.png",
+        "name": "HouseholdItems_MT002_01_D"
+      }
+    ],
+  }
+
+  function json3DTransform(json) {
+
+    function getPropInMatName(matName, prop) {
+      const propStr = matName
+        .split('_')
+        .find(i => i.startsWith(prop))
+      return propStr
+        ? propStr.slice(prop.length)
+        : undefined
+    }
+
+    function getRepeat(matName) {
+      const repeatValue = getPropInMatName(matName, 'scale')
+      return repeatValue
+        ? repeatValue.split('&')
+        : undefined
+    }
+
+    return json.materials.reduce((acc, cur) => {
+        const matName = cur.name
+        !acc[matName] && (acc[matName] = {})
+        const matInfo = acc[matName]
+        const images = json.images
+        const pbrMetallicRoughness = cur.pbrMetallicRoughness
+        const baseColorTexture = pbrMetallicRoughness.baseColorTexture
+        const normalTexture = cur.normalTexture
+        const metalTexture = pbrMetallicRoughness.metallicRoughnessTexture
+        matInfo.metalness = pbrMetallicRoughness.metallicFactor
+        matInfo.roughness = pbrMetallicRoughness.roughnessFactor
+        if (images) {
+          if (baseColorTexture) {
+            matInfo.map = images[baseColorTexture.index].uri
+            if (
+              baseColorTexture.extensions &&
+              baseColorTexture.extensions.KHR_texture_transform &&
+              baseColorTexture.extensions.KHR_texture_transform.scale
+            ) {
+              matInfo.repeat = baseColorTexture.extensions.KHR_texture_transform.scale
+            }
+          }
+          if (normalTexture) {
+            matInfo.normalMap = images[normalTexture.index].uri
+            matInfo.normalScale = normalTexture.scale
+
+            const repeat = getRepeat(matName)
+            repeat && (matInfo.normalRepeat = repeat)
+          }
+          metalTexture && (acc[cur.name].metalMap = images[metalTexture.index].uri)
+        }
+        return acc
+      }, {
+        // env: {envMap: '/Studio-light.png'}
+        // [customMaterial]: {map: '/ct.jpg'}
+      }
+    )
+  }
+  const renderer = Zw_previewer.getRenderer(document.querySelector('canvas'), true)
+  const matsInfo = json3DTransform(json)
+  let previewer
+  async function init3dPreviewer() {
+    previewer = new Zw_previewer.Previewer({
+      width: 600,
+      height: 600,
+      stopAnimate: true,
+      renderer,
+      lightConfigChanged: true,
+      GLTFPath: '/HouseholdItems_MT002_05/HouseholdItems_MT002_05.glb',
+      lightLock: true,
+      matsInfo,
+      rotation: {x: 0.5, y: 0, z: .5},
+      transparentBackground: true,
+      mainPointLight: {
+        intensity: 0.1,
+        "position": {
+          "x": 300,
+          "y": 300,
+          "z": 30
+        },
+      },
+      zoom: 3,
+      ambientLight: {
+        intensity: 0.1
+      },
+      aroundPointLight: {
+        intensity: 0.1
+      },
+      cameraPosition: {
+        x: -4,
+        y: 8,
+        z: -4
+      }
+    })
+    await previewer.init()
+    previewer.getImg()
+    previewer.destroy()
+    // .updateMap('/Red.png', customMaterial)
+    // .updateMap('/Base_blue.jpg', baseMaterial)
+    // .updateMap('/Base_blue.jpg', baseMaterial)
+    // json.materials
+    //   .filter(i => i.name.includes('base'))
+    //   .forEach(i => previewer.updateMap('g.jpeg', i.name))
+    //
+    // previewer.updateMap('a.png', 'BAG_YD5332_06_scale4&4_custom')
+    // previewer.updateMap('b.png', 'Clothing_4752Y_002_scale200&200_custom')
+  }
+  init3dPreviewer()
+
+  let i = 0
+
+  function updateMap() {
+    previewer.updateMap('xxf.png', 'HouseholdItems_MT002_13_A_scale13&13_custom')
+  }
+
+  function normalRepeat(e) {
+    previewer.updateMaterialInfo({normalRepeat: e.value})
+  }
+
+  function updateMesh() {
+    previewer.updateMeshGroup('/cupModel.obj')
+  }
+</script>
+</html>

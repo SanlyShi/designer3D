@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "skipLibCheck": true,
+    "lib": ["es6", "dom", "es2017", "ESNext"],
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "module": "ES2015",
+    "allowJs": true,
+    "target": "es2018"
+  },
+  "exclude": ["static/**"]
+}

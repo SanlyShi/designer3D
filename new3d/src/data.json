@@ -1,0 +1,165 @@
+{
+  "glbPath": "/Users/huanghuazhi/Desktop/projects/zwdc/frontend/previewer/static/YD5332/YD5332.glb",
+  "enableHDR": 1,
+  "json": {
+    "materials": [
+      {
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.2830189,
+            0.2830189,
+            0.2830189,
+            1.0
+          ],
+          "metallicFactor": 0.0
+        },
+        "name": "BAG_YD5332_00_scale01&05"
+      },
+      {
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.588235,
+            0.588235,
+            0.588235,
+            1.0
+          ],
+          "metallicFactor": 0.42899999022483826,
+          "roughnessFactor": 0.0
+        },
+        "name": "BAG_YD5332_01"
+      },
+      {
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.4056604,
+            0.4056604,
+            0.4056604,
+            1.0
+          ],
+          "metallicFactor": 0.0
+        },
+        "name": "BAG_YD5332_02_scale15&08"
+      },
+      {
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.588235,
+            0.588235,
+            0.588235,
+            1.0
+          ],
+          "metallicFactor": 0.0
+        },
+        "name": "BAG_YD5332_03"
+      },
+      {
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.169811308,
+            0.169811308,
+            0.169811308,
+            1.0
+          ],
+          "metallicFactor": 0.0
+        },
+        "name": "BAG_YD5332_04"
+      },
+      {
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.6415094,
+            0.511391938,
+            0.511391938,
+            1.0
+          ],
+          "metallicFactor": 0.0
+        },
+        "normalTexture": {
+          "index": 0
+        },
+        "name": "BAG_YD5332_06_scale4&4_custom"
+      },
+      {
+        "pbrMetallicRoughness": {
+          "baseColorFactor": [
+            0.5499288,
+            0.5633689,
+            0.6981132,
+            1.0
+          ],
+          "metallicFactor": 0.0
+        },
+        "normalTexture": {
+          "index": 0
+        },
+        "name": "BAG_YD5332_051_scale4&4"
+      }
+    ],
+    "images": [
+      {
+        "uri": "/Users/huanghuazhi/Desktop/projects/zwdc/frontend/previewer/static/b.png",
+        "name": "000"
+      }
+    ]
+  },
+  "basePng": "",
+  "outputPath": "/Users/huanghuazhi/Desktop/projects/zwdc/frontend/previewer/src/lktest.png",
+  "uvList": [
+    {
+      "name": "BAG_YD5332_06_scale4&4_custom",
+      "customBase": {
+        "customBaseType": 1,
+        "customBaseCode": [166, 166, 166],
+        "customBaseImg": ""
+      },
+      "faceList": [
+        {
+          "name": "A面",
+          "width": 1200,
+          "height": 1200,
+          "url" : "/Users/huanghuazhi/Desktop/projects/zwdc/frontend/previewer/static/a.png",
+          "params": {
+            "angle": 0,
+            "centerX": 600,
+            "centerY": 600,
+            "flipX": false,
+            "flipY": false,
+            "left": 0,
+            "minX": 0,
+            "minY": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "top": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "Clothing_4752Y_002_scale200&200_custom",
+      "customBase": {
+        "customBaseType": 2,
+        "customBaseCode": [166, 166, 166],
+        "customBaseImg": "/Users/huanghuazhi/Desktop/projects/zwdc/frontend/previewer/static/Red.png"
+      },
+      "faceList": [
+      ]
+    }
+  ],
+  "renderParams": {
+    "mainPointIntensity": 0,
+    "ambientLightIntensity": 0,
+    "aroundPointIntensity": 0,
+    "mainPointPosition": {
+      "x": 300,
+      "y": 300,
+      "z": 30
+    },
+    "rotation": {"x": 0.5, "y":0, "z": 0.5},
+    "zoom": "3"
+  },
+  "position": {
+    "x": 15,
+    "y": 15,
+    "z": 15
+  }
+}

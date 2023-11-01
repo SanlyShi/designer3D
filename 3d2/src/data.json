@@ -1,0 +1,152 @@
+{
+  "glbPath": "/Users/huanghuazhi/Desktop/zwdc3d/3d2/static/HouseholdItems_MT002_05/HouseholdItems_MT002_05.glb",
+  "enableHDR": "0",
+  "json": {
+    "materials": [
+      {
+        "pbrMetallicRoughness": {
+          "metallicFactor": 0.0,
+          "roughnessFactor": 0.79999999701976776
+        },
+        "normalTexture": {
+          "index": 0
+        },
+        "name": "HouseholdItems_MT002_13_A_scale13&13_custom"
+      },
+      {
+        "pbrMetallicRoughness": {
+          "metallicFactor": 0.0,
+          "roughnessFactor": 0.79999999701976776
+        },
+        "normalTexture": {
+          "index": 0
+        },
+        "name": "HouseholdItems_MT002_13_B_scale13&13"
+      },
+      {
+        "pbrMetallicRoughness": {
+          "baseColorTexture": {
+            "index": 1,
+            "extensions": {
+              "KHR_texture_transform": {
+                "scale": [
+                  151.0,
+                  151.0
+                ]
+              }
+            }
+          },
+          "metallicFactor": 0.0,
+          "roughnessFactor": 0.79999999701976776
+        },
+        "alphaMode": "BLEND",
+        "name": "HouseholdItems_MT002_13_C_scale151&151"
+      },
+      {
+        "pbrMetallicRoughness": {
+          "baseColorTexture": {
+            "index": 2,
+            "extensions": {
+              "KHR_texture_transform": {
+                "scale": [
+                  151.0,
+                  151.0
+                ]
+              }
+            }
+          },
+          "metallicFactor": 0.0,
+          "roughnessFactor": 0.79999999701976776
+        },
+        "alphaMode": "BLEND",
+        "name": "HouseholdItems_MT002_13_D_scale151&151"
+      }
+    ],
+    "images": [
+      {
+        "uri": "/Users/huanghuazhi/Desktop/zwdc3d/3d2/static/HouseholdItems_MT002_05/HouseholdItems_MT002_01_A_N.png",
+        "name": "HouseholdItems_MT002_01_A_N"
+      },
+      {
+        "uri": "/Users/huanghuazhi/Desktop/zwdc3d/3d2/static/HouseholdItems_MT002_05/HouseholdItems_MT002_01_C.png",
+        "name": "HouseholdItems_MT002_01_C"
+      },
+      {
+        "uri": "/Users/huanghuazhi/Desktop/zwdc3d/3d2/static/HouseholdItems_MT002_05/HouseholdItems_MT002_01_D.png",
+        "name": "HouseholdItems_MT002_01_D"
+      }
+    ]
+  },
+  "basePng": "",
+  "outputPath": "/Users/huanghuazhi/Desktop/zwdc3d/3d2/src/lk1.png",
+  "uvList": [
+    {
+      "customBase": {
+        "customBaseImg": "",
+        "customBaseCode": [
+          "0",
+          "0",
+          "0"
+        ],
+        "customBaseType": 1
+      },
+      "name": "HouseholdItems_MT002_13_A_scale13&13_custom",
+      "faceList": [
+        {
+          "name": "A\u9762",
+          "print_area_id": 239,
+          "view_id": 1,
+          "print_area": {
+            "view_id": 1,
+            "offset_x": "119.60850",
+            "offset_y": "0.00000",
+            "width": "960.78300",
+            "height": "1200.00000",
+            "actual_width": "1740.00000",
+            "soft_svg": "M216.614,2173.228V0h1739.999v2173.228H216.614z"
+          },
+          "width": 1200,
+          "height": 1200,
+          "url": "/Users/huanghuazhi/Desktop/zwdc3d/3d2/static/a.png",
+          "params": {
+            "angle": 0,
+            "flipX": false,
+            "flipY": false,
+            "left": 20,
+            "top": 20,
+            "scaleX": 0.97,
+            "scaleY": 0.97,
+            "minX": 0,
+            "minY": 0,
+            "centerX": 602,
+            "centerY": 602,
+            "visible": true
+          },
+          "id": 1319,
+          "uv_id": 1887
+        }
+      ]
+    }
+  ],
+  "renderParams": {
+    "mainPointIntensity": 0.1,
+    "ambientLightIntensity": 0.1,
+    "aroundPointIntensity": 0.1,
+    "mainPointPosition": {
+      "x": 300,
+      "y": 300,
+      "z": 30
+    },
+    "rotation": {
+      "x": 0.5,
+      "y": 0,
+      "z": 0.5
+    },
+    "zoom": "3"
+  },
+  "position": {
+    "x": -4,
+    "y": 8,
+    "z": -4
+  }
+}
